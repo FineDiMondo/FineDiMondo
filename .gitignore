@@ -1,0 +1,102 @@
+# Secrets & Credentials
+CREDENZIALI_ACCESSO.md
+.env
+.env.local
+.env.*.local
+.env.prod
+.env.prod.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Node.js / Angular
+node_modules/
+npm-debug.log
+yarn-error.log
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# IDE & Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+
+# Testing
+/coverage
+.nyc_output
+*.lcov
+.pytest_cache/
+.karma/
+karma-coverage/
+
+# Build artifacts
+/backend/dist
+/frontend/dist
+*.tgz
+
+# Temporary files
+.tmp/
+*.tmp
+*.temp
+
+# Lock files (optional - uncomment if team uses different package managers)
+# package-lock.json
+# yarn.lock
+# poetry.lock
+
+# Google Cloud
+.gcloud/
+google-cloud-sdk/
+service-account-key.json
+*.json.enc
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+logs/
+*.log*
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
