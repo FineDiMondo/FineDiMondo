@@ -46,11 +46,15 @@ async def root():
 # Import e includi i router
 from app.routes import events_router, artists_router
 from app.routes.admin import router as admin_router
+from app.routes.social import router as social_router
+from app.routes.analytics_api import router as analytics_router
 
 # Includi i router nell'app
 app.include_router(events_router, prefix="/api")
 app.include_router(artists_router, prefix="/api")
 app.include_router(admin_router, prefix="/api")
+app.include_router(social_router, prefix="/api")
+app.include_router(analytics_router, prefix="/api")
 
 
 if __name__ == "__main__":

@@ -1,5 +1,9 @@
 import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { ArchiveComponent } from './modules/archive/archive.component';
+import { SocialComponent } from './modules/social/social.component';
+import { AnalyticsComponent } from './modules/analytics/analytics.component';
 
 export const routes: Routes = [
   {
@@ -8,19 +12,19 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+        component: DashboardComponent
       },
       {
         path: 'archive',
-        loadChildren: () => import('./modules/archive/archive.module').then(m => m.ArchiveModule)
+        component: ArchiveComponent
       },
       {
         path: 'social',
-        loadChildren: () => import('./modules/social/social.module').then(m => m.SocialModule)
+        component: SocialComponent
       },
       {
         path: 'analytics',
-        loadChildren: () => import('./modules/analytics/analytics.module').then(m => m.AnalyticsModule)
+        component: AnalyticsComponent
       },
       {
         path: '',
