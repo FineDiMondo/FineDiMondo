@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: finedimondo-ingress
+  namespace: danielworkspace
+  labels:
+    app: finedimondo
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: finedimondo.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: finedimondo-frontend
+            port:
+              number: 80
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: finedimondo-backend
+            port:
+              number: 8080
+
+  # TLS configuration (opzionale per produzione)
+  tls:
+  - hosts:
+    - finedimondo.local
+    secretName: finedimondo-tls

@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finedimondo-frontend
+  namespace: danielworkspace
+  labels:
+    app: finedimondo-frontend
+    environment: development
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: finedimondo-frontend
+  template:
+    metadata:
+      labels:
+        app: finedimondo-frontend
+        environment: development
+    spec:
+      containers:
+      - name: frontend
+        image: registry.finedimondo.mywire.org/daniel/finedimondo-frontend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: http
+
+        # Environment variables da ConfigMap
+        env:
+        - name: API_URL
+          valueFrom:
+            configMapKeyRef:
+              name: finedimondo-config
+              key: API_URL
+
+        # Liveness and Readiness Probes
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 2
+
+        # Resource requests and limits
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+
+        # Volume mounts se necessario
+        volumeMounts:
+        - name: nginx-cache
+          mountPath: /var/cache/nginx
+
+      # Image pull secret per il registry privato
+      imagePullSecrets:
+      - name: harbor-registry-credentials
+
+      volumes:
+      - name: nginx-cache
+        emptyDir: {}
+
+      # Restart policy
+      restartPolicy: Always
